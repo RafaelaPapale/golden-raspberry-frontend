@@ -20,10 +20,10 @@ function MoviesListSkeleton() {
 
 export default function MoviesPage() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-medium">Movies List</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="text-2xl font-bold tracking-tight">Movies List</h1>
+        <p className="mt-0.5 text-sm text-muted-foreground">
           All nominees and winners in the Worst Picture category.
         </p>
       </div>

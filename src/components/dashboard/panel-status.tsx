@@ -1,3 +1,4 @@
+import { AlertTriangle, Inbox } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
 interface PanelStatusProps {
@@ -27,17 +28,27 @@ export function PanelStatus({
 
   if (isError) {
     return (
-      <p className="py-6 text-center text-sm text-destructive">
-        No data could be loaded. Please try again later.
-      </p>
+      <div className="flex flex-col items-center justify-center gap-2.5 py-8">
+        <div className="flex size-10 items-center justify-center rounded-full bg-destructive/10">
+          <AlertTriangle className="size-4.5 text-destructive" aria-hidden />
+        </div>
+        <p className="text-center text-sm text-destructive">
+          No data could be loaded. Please try again later.
+        </p>
+      </div>
     );
   }
 
   if (isEmpty) {
     return (
-      <p className="py-6 text-center text-sm text-muted-foreground">
-        No data available.
-      </p>
+      <div className="flex flex-col items-center justify-center gap-2.5 py-8">
+        <div className="flex size-10 items-center justify-center rounded-full bg-muted">
+          <Inbox className="size-4.5 text-muted-foreground" aria-hidden />
+        </div>
+        <p className="text-center text-sm text-muted-foreground">
+          No data available.
+        </p>
+      </div>
     );
   }
 

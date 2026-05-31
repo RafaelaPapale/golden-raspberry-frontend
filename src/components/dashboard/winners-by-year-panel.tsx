@@ -1,13 +1,19 @@
 "use client";
 
 import { useWinnersByYear } from "@/src/hooks/use-dashboard";
-import { CalendarSearch } from "lucide-react";
+import { CalendarSearch, Search } from "lucide-react";
 import { useState, FormEvent } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../ui/table";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "../ui/table";
 import { DashboardCard } from "./dashboard-card";
-
 
 export function WinnersByYearPanel() {
   const [inputYear, setInputYear] = useState("");
@@ -28,7 +34,7 @@ export function WinnersByYearPanel() {
   function renderResult() {
     if (searchedYear === null) {
       return (
-        <p className="py-6 text-center text-sm text-muted-foreground">
+        <p className="py-8 text-center text-sm text-muted-foreground">
           Search by year
         </p>
       );
@@ -36,7 +42,7 @@ export function WinnersByYearPanel() {
 
     if (isLoading) {
       return (
-        <p className="py-6 text-center text-sm text-muted-foreground">
+        <p className="py-8 text-center text-sm text-muted-foreground">
           Loading...
         </p>
       );
@@ -44,7 +50,7 @@ export function WinnersByYearPanel() {
 
     if (isError) {
       return (
-        <p className="py-6 text-center text-sm text-destructive">
+        <p className="py-8 text-center text-sm text-destructive">
           Unable to fetch winners.
         </p>
       );
@@ -52,7 +58,7 @@ export function WinnersByYearPanel() {
 
     if (winners.length === 0) {
       return (
-        <p className="py-6 text-center text-sm text-muted-foreground">
+        <p className="py-8 text-center text-sm text-muted-foreground">
           No winners in {searchedYear}.
         </p>
       );
@@ -61,18 +67,22 @@ export function WinnersByYearPanel() {
     return (
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead className="w-16">ID</TableHead>
-            <TableHead>Title</TableHead>
+          <TableRow className="hover:bg-transparent">
+            <TableHead className="w-16 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              ID
+            </TableHead>
+            <TableHead className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Title
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {winners.map((movie) => (
             <TableRow key={movie.id}>
-              <TableCell className="text-muted-foreground">
+              <TableCell className="tabular-nums text-muted-foreground">
                 {movie.id}
               </TableCell>
-              <TableCell>{movie.title}</TableCell>
+              <TableCell className="font-medium">{movie.title}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -90,8 +100,10 @@ export function WinnersByYearPanel() {
           value={inputYear}
           onChange={(event) => setInputYear(event.target.value)}
           aria-label="Year"
+          className="flex-1"
         />
-        <Button type="submit" disabled={isFetching}>
+        <Button type="submit" size="sm" disabled={isFetching} className="shrink-0">
+          <Search className="size-3.5" aria-hidden />
           Search
         </Button>
       </form>

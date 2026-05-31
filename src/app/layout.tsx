@@ -13,10 +13,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className="min-h-screen bg-muted/30 antialiased">
+      <body className="min-h-screen bg-stone-50 antialiased">
         <Providers>
           <Navbar />
-          <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
+          <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
         </Providers>
       </body>
     </html>

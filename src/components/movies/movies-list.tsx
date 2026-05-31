@@ -97,7 +97,7 @@ export function MoviesList() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-end gap-2">
+      <div className="flex flex-wrap items-end gap-2 rounded-lg border bg-card px-4 py-3 shadow-xs">
         <form onSubmit={handleYearSubmit} className="flex gap-2">
           <Input
             type="number"
@@ -114,7 +114,7 @@ export function MoviesList() {
             size="icon"
             aria-label="Apply year filter"
           >
-            <Search />
+            <Search className="size-4" aria-hidden />
           </Button>
         </form>
 
@@ -135,8 +135,9 @@ export function MoviesList() {
             size="sm"
             onClick={handleClearFilters}
             aria-label="Clear filters"
+            className="text-muted-foreground hover:text-foreground"
           >
-            <X />
+            <X className="size-3.5" aria-hidden />
             Clear filters
           </Button>
         )}
@@ -151,7 +152,7 @@ export function MoviesList() {
       ) : isError ? (
         <p
           role="alert"
-          className="py-10 text-center text-sm text-destructive"
+          className="rounded-lg border border-destructive/20 bg-destructive/5 px-4 py-10 text-center text-sm text-destructive"
         >
           Unable to load movies. Please try again.
         </p>
@@ -160,39 +161,47 @@ export function MoviesList() {
           No movies found with the applied filters.
         </p>
       ) : (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-16">Year</TableHead>
-              <TableHead>Title</TableHead>
-              <TableHead className="w-28 text-right">Winner</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {movies.map((movie) => (
-              <TableRow key={movie.id}>
-                <TableCell className="text-muted-foreground">
-                  {movie.year}
-                </TableCell>
-                <TableCell>{movie.title}</TableCell>
-                <TableCell className="text-right">
-                  {movie.winner && (
-                    <Badge
-                      variant="outline"
-                      className="border-amber-300 text-amber-700"
-                    >
-                      Yes
-                    </Badge>
-                  )}
-                </TableCell>
+        <div className="rounded-lg border bg-card shadow-xs">
+          <Table>
+            <TableHeader>
+              <TableRow className="hover:bg-transparent">
+                <TableHead className="w-16 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Year
+                </TableHead>
+                <TableHead className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Title
+                </TableHead>
+                <TableHead className="w-28 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Winner
+                </TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {movies.map((movie) => (
+                <TableRow key={movie.id}>
+                  <TableCell className="tabular-nums text-muted-foreground">
+                    {movie.year}
+                  </TableCell>
+                  <TableCell className="font-medium">{movie.title}</TableCell>
+                  <TableCell className="text-right">
+                    {movie.winner && (
+                      <Badge
+                        variant="outline"
+                        className="border-amber-300 bg-amber-50 text-amber-700"
+                      >
+                        Yes
+                      </Badge>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       )}
 
       {!isLoading && !isError && movies.length > 0 && (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between px-1">
           <p className="text-sm text-muted-foreground">
             {totalElements} {totalElements === 1 ? "filme" : "filmes"} · página{" "}
             {page} de {totalPages}
@@ -205,7 +214,7 @@ export function MoviesList() {
               disabled={isFirst || isFetching}
               aria-label="Página anterior"
             >
-              <ChevronLeft />
+              <ChevronLeft className="size-4" aria-hidden />
               Previous
             </Button>
             <Button
@@ -216,7 +225,7 @@ export function MoviesList() {
               aria-label="Next page"
             >
               Next
-              <ChevronRight />
+              <ChevronRight className="size-4" aria-hidden />
             </Button>
           </div>
         </div>
