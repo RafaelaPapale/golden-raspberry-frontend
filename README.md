@@ -2,6 +2,8 @@
 
 Interface web para análise dos indicados e vencedores da categoria **Pior Filme** do Golden Raspberry Awards, consumindo a API pública `https://challenge.outsera.tech/api/movies`.
 
+**Acesse a aplicação:** [https://golden-raspberry-frontend.vercel.app/](https://golden-raspberry-frontend.vercel.app/)
+
 ---
 
 ## Visão Geral
